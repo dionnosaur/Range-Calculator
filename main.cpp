@@ -41,7 +41,7 @@ class Sniper : public Weapons {
         range = range/10;
       }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
       };
 };
 
@@ -56,13 +56,13 @@ class M4 : public Weapons {
         range = range/10;
       }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
       };
 };
 
 class Blaster : public Weapons {
   private:
-  int const constant = 7;
+  int const constant = 3;
   double wind;
   public:
   
@@ -71,7 +71,7 @@ class Blaster : public Weapons {
         range = range/10;
       }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
       };
 };
 
@@ -86,7 +86,7 @@ class DeathRay : public Weapons {
       }
       
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " mil(s).";
+      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
       };
 };
 
@@ -106,51 +106,51 @@ int main() {
   
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  cout << "|         Range Calculator         |" << endl << "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
- cout << endl << "      Please choose your weapon" << endl;
+ cout << endl << "      Please select your weapon" << endl;
  cout << setw(10) << left << " " << "1. Sniper Rifle" << endl;
  cout << setw(10) << left << " " << "2. M4 Carbine" << endl;
  cout << setw(10) << left << " " << "3. Imperial Blaster" << endl;
  cout << setw(10) << left << " " << "4. Death Ray" << endl << endl;
  
- cout << "Enter a number 1-4:";
+ cout << "Enter a number 1-4: ";
  cin >> weaponChoice;
  while (weaponChoice < 1 || weaponChoice > 4) {
-   cout << "Please choose between 1 and 4:";
+   cout << "Please select between 1 and 4: ";
    cin >> weaponChoice;
  }
  
  
  
  if (weaponChoice == 1){
-   cout << "Sniper Rifle chosen." << endl;
+   cout << "Sniper Rifle selected." << endl;
  }
  else if (weaponChoice ==2){
-   cout << "M4 Carbine chosen." << endl;
+   cout << "M4 Carbine selected." << endl;
  }
  else if (weaponChoice == 3){
-   cout << "Imperial Blaster chosen. (Don't miss) " << endl;
+   cout << "Imperial Blaster selected. (Don't miss) " << endl;
  }
  else {
-   cout << "Death Ray chosen." << endl;
+   cout << "Death Ray selected." << endl;
  }
  
-  cout << endl << "Please choose the output for the range:" << endl;
+  cout << endl << "Please choose the output for the range: " << endl;
   cout << setw(10) << left << " " << "1. Meters" << endl;
   cout << setw(10) << left << " " << "2. Yards" << endl << endl;
   
-  cout << "Please enter 1 or 2:";
+  cout << "Please enter 1 or 2: ";
   cin >> unit;
   while (unit < 1 || unit > 2){
-    cout << "Please enter 1 or 2:";
+    cout << "Please enter 1 or 2: ";
     cin >> unit;
   }
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  
  
- cout << endl << "Please enter the length in inches of your target:";
+ cout << endl << "Please enter the length in inches of your target: ";
  cin >> target;
  
- cout << "Please enter the mil dot reading:";
+ cout << "Please enter the mil dot reading: ";
  cin >> mil;
  cout << endl;
  
@@ -168,14 +168,14 @@ int main() {
  cout << endl << "Is there wind?" << endl;
  cout << setw (10) << left << " " << "1. Yes" << endl;
  cout << setw (10) << left << " " << "2. No" << endl << endl;
- cout << "Please enter 1 or 2:";
+ cout << "Please enter 1 or 2: ";
  cin >> wind;
  while (wind < 1 || wind > 2){
-   cout << "Please enter 1 or 2:";
+   cout << "Please enter 1 or 2: ";
    cin >> wind;
  }
  if (wind == 1){
-   cout << endl << "Please enter the wind velocity (in MPH):";
+   cout << endl << "Please enter the wind velocity (in MPH): ";
    cin >> windVelocity;
   
   if (weaponChoice == 1){
@@ -195,6 +195,7 @@ int main() {
    D.windFormula(windVelocity);
  }
  }
+ cout << endl;
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  
  
