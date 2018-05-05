@@ -13,14 +13,14 @@ class Weapons {
     void distanceFormulaYard(double length, double &mil){
       range = (27.7 * length)/mil;
       return;
-}
+} double range;
   private:
     double distance;
     int constant=10;
     
     
   public:
-    double range;
+    
     double distanceMeter(double leng, double &mil){
       range = distance;
       distanceFormulaMeter(leng, mil);
@@ -37,8 +37,11 @@ class Sniper : public Weapons {
   double wind;
   public:
   void windFormula(double windVel){
+      while (range > 10){
+        range = range/10;
+      }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " mils.";
       };
 };
 
@@ -49,8 +52,11 @@ class M4 : public Weapons {
   
   public:
   void windFormula(double windVel){
+      while (range > 10){
+        range = range/10;
+      }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " mils.";
       };
 };
 
@@ -59,9 +65,13 @@ class Blaster : public Weapons {
   int const constant = 7;
   double wind;
   public:
+  
   void windFormula(double windVel){
+    while (range > 10){
+        range = range/10;
+      }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " mils.";
       };
 };
 
@@ -71,8 +81,12 @@ class DeathRay : public Weapons {
   double wind;
   public:
   void windFormula(double windVel){
+    while (range > 10){
+        range = range/10;
+      }
+      
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << wind << " mils.";
+      cout << "Wind Correction: " << setprecision(1) << wind << " mil(s).";
       };
 };
 
@@ -130,13 +144,16 @@ int main() {
     cout << "Please enter 1 or 2:";
     cin >> unit;
   }
+ cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
+ 
  
  cout << endl << "Please enter the length in inches of your target:";
  cin >> target;
  
- cout << endl << "Please enter the mil dot reading:";
+ cout << "Please enter the mil dot reading:";
  cin >> mil;
- cout << endl << endl;
+ cout << endl;
+ 
  
  if (unit == 1){
    w.distanceMeter(target,mil);
@@ -146,38 +163,39 @@ int main() {
    w.distanceYard(target,mil);
    cout << "Range: " << w.distanceYard(target, mil) << " yards." << endl;
  }
- 
+ cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  
  cout << endl << "Is there wind?" << endl;
- cout << setw (5) << left << " " << "1. Yes" << endl;
- cout << setw (5) << left << " " << "2. No" << endl << endl;
+ cout << setw (10) << left << " " << "1. Yes" << endl;
+ cout << setw (10) << left << " " << "2. No" << endl << endl;
  cout << "Please enter 1 or 2:";
  cin >> wind;
  while (wind < 1 || wind > 2){
    cout << "Please enter 1 or 2:";
    cin >> wind;
  }
- if (wind == 'Y'){
-   cout << "Please enter the wind velocity (in MPH):";
+ if (wind == 1){
+   cout << endl << "Please enter the wind velocity (in MPH):";
    cin >> windVelocity;
+  
   if (weaponChoice == 1){
-   
+   S.distanceYard(target, mil);
    S.windFormula(windVelocity);
  }
  else if (weaponChoice ==2){
-   
+   M.distanceYard(target,mil);
    M.windFormula(windVelocity);
  }
  else if (weaponChoice == 3){
-   
+   B.distanceYard(target,mil);
    B.windFormula(windVelocity);
  }
  else {
-   
+   D.distanceYard(target,mil);
    D.windFormula(windVelocity);
  }
  }
- 
+ cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  
  
  
