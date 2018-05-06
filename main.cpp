@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip> 
+#include <fstream>
 
 using namespace std;
 
@@ -36,12 +37,13 @@ class Sniper : public Weapons {
   int const constant = 10;
   double wind;
   public:
-  void windFormula(double windVel){
+  double windFormula(double windVel){
       while (range > 10){
         range = range/10;
       }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
+      return wind;
+      
       };
 };
 
@@ -51,12 +53,13 @@ class M4 : public Weapons {
   double wind;
   
   public:
-  void windFormula(double windVel){
+  double windFormula(double windVel){
       while (range > 10){
         range = range/10;
       }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
+      
+      return wind;
       };
 };
 
@@ -66,12 +69,13 @@ class Blaster : public Weapons {
   double wind;
   public:
   
-  void windFormula(double windVel){
+  double windFormula(double windVel){
     while (range > 10){
         range = range/10;
       }
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
+      return wind;
+      
       };
 };
 
@@ -80,13 +84,14 @@ class DeathRay : public Weapons {
   double const constant = 3.0e+10;
   double wind;
   public:
-  void windFormula(double windVel){
+  double windFormula(double windVel){
     while (range > 10){
         range = range/10;
       }
       
       wind = (range * windVel)/constant;
-      cout << "Wind Correction: " << setprecision(1) << wind << " MOA";
+      return wind;
+      
       };
 };
 
@@ -118,21 +123,27 @@ int main() {
    cout << "Please select between 1 and 4: ";
    cin >> weaponChoice;
  }
- 
+  ofstream myfile;
+  myfile.open ("DOPE.txt", ios::out | ios::app | ios::binary);
  
  
  if (weaponChoice == 1){
    cout << "Sniper Rifle selected." << endl;
+   myfile << setw(17) << left << "Sniper Rifle    ";
  }
  else if (weaponChoice ==2){
    cout << "M4 Carbine selected." << endl;
+   myfile << setw(17) << left <<"M4 Carbine      " ;
  }
  else if (weaponChoice == 3){
    cout << "Imperial Blaster selected. (Don't miss) " << endl;
+   myfile << setw(17) << "Imperial Blaster ";
  }
  else {
    cout << "Death Ray selected." << endl;
+   cout << setw(17) << "Death Ray        ";
  }
+ 
  
   cout << endl << "Please choose the output for the range: " << endl;
   cout << setw(10) << left << " " << "1. Meters" << endl;
@@ -153,17 +164,21 @@ int main() {
  cout << "Please enter the mil dot reading: ";
  cin >> mil;
  cout << endl;
- 
+
+ myfile << setw(10) << left << "Target(in):" << target <<  "    Mil:" << mil; 
  
  if (unit == 1){
    w.distanceMeter(target,mil);
    cout << "Range: " << w.distanceMeter(target, mil) << " meters." << endl;
+   myfile << setw(17) << left << "      Range in meters:" << w.distanceMeter(target, mil);
  }
  else {
    w.distanceYard(target,mil);
    cout << "Range: " << w.distanceYard(target, mil) << " yards." << endl;
+   myfile << setw(17) << left << "      Range in yards:" << w.distanceYard(target,mil);
  }
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
+ 
  
  cout << endl << "Is there wind?" << endl;
  cout << setw (10) << left << " " << "1. Yes" << endl;
@@ -174,30 +189,44 @@ int main() {
    cout << "Please enter 1 or 2: ";
    cin >> wind;
  }
+ 
+
  if (wind == 1){
    cout << endl << "Please enter the wind velocity (in MPH): ";
    cin >> windVelocity;
   
   if (weaponChoice == 1){
    S.distanceYard(target, mil);
-   S.windFormula(windVelocity);
+   cout << "Wind Correction: " << fixed << setprecision(1) << S.windFormula(windVelocity) << " MOA";
+   myfile << "     Wind Correction: " << fixed << setprecision(1) << S.windFormula(windVelocity) << " MOA";
+   
  }
  else if (weaponChoice ==2){
    M.distanceYard(target,mil);
-   M.windFormula(windVelocity);
+   cout << "Wind Correction: " << fixed << setprecision(1) << M.windFormula(windVelocity) << " MOA";
+   myfile << "     Wind Correction: " << setprecision (1) << M.windFormula(windVelocity) << " MOA";
  }
  else if (weaponChoice == 3){
    B.distanceYard(target,mil);
-   B.windFormula(windVelocity);
+   cout << "Wind Correction: " << fixed <<  setprecision(1) << B.windFormula(windVelocity) << " MOA";
+   myfile << "     Wind Correction: " << fixed <<  setprecision(1) << B.windFormula(windVelocity) << " MOA";
  }
  else {
    D.distanceYard(target,mil);
-   D.windFormula(windVelocity);
+   cout << "Wind Correction: " << fixed << setprecision(1) << D.windFormula(windVelocity) << " MOA";
+   myfile << "     Wind Correction: " << fixed << setprecision(1) << D.windFormula(windVelocity) << " MOA";
  }
+ }
+ else {
+   
  }
  cout << endl;
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
- 
+
+
+myfile.close();
+
+ //cout << endl << "Hit or Miss?";
  
  
  return 0;
