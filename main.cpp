@@ -2,6 +2,8 @@
 #include <string>
 #include <iomanip> 
 #include <fstream>
+#include <sstream>
+
 
 using namespace std;
 
@@ -95,6 +97,160 @@ class DeathRay : public Weapons {
       };
 };
 
+char MatrixRossWells[9][16] = {
+    
+    { ' ', ' ', ' ', ' ', ' ', ' ', ' ', '1', ' ', ' ', ' ', ' ',' ',' ',' ',' '},
+    { ' ', ' ', ' ', ' ', ' ','_','_','_','_','_', ' ', ' ',' ',' ',' ',' '},
+    {' ',' ',' ',' ','(','a','*','b','*','c',')',' ',' ',' ',' ',' '},
+   {' ',' ',' ',' ',' ','|','d','e','f','|',' ',' ',' ',' ',' ',' '},
+    {' ',' ','2',' ','/','g','h','i','j','k','l','\\',' ','3',' ',' '},
+   {' ',' ',' ','/','m','/','|','n','o','|','\\','p','\\',' ',' ',' '},
+  {' ',' ','/','q','/',' ','|','r','s','|',' ','\\','t','\\',' ',' '},
+   {' ',' ',' ',' ',' ',' ','|','u','v','|',' ',' ',' ',' ',' ',' '},
+    {' ',' ',' ',' ',' ',' ',' ','4',' ',' ',' ',' ',' ',' ',' ',' '}
+};
+
+void Draw()
+
+{
+  cout << endl;
+    for (int i = 0; i < 9; i++)
+    {
+       for (int j = 0; j < 16; j++)
+       {
+           cout << MatrixRossWells[i][j] << " ";
+           
+       }
+       cout << endl;
+       
+}
+}
+    void Input()
+    {
+        char z;
+        char player = 'x';
+        cout << "Enter a letter (or number for miss):";
+        cin >> z;
+        cout << endl;
+        
+        if (z == '1')
+            {MatrixRossWells[0][7] = player;}
+        else if (z == 'a'){
+            MatrixRossWells[2][5] = player;}
+        else if(z == 'b'){
+            MatrixRossWells[2][7] = player;}
+        else if(z == 'c'){
+            MatrixRossWells[2][9] = player;}
+        else if(z == 'd'){
+            MatrixRossWells[3][6] = player;}
+        else if(z == 'e'){
+            MatrixRossWells[3][7] = player;}
+        else if(z == 'f'){
+            MatrixRossWells[3][8] = player;}
+        else if(z == '2'){
+            MatrixRossWells[4][2] = player;}
+        else if(z == 'g'){
+            MatrixRossWells[4][5] = player;}
+        else if(z == 'h'){
+            MatrixRossWells[4][6] = player;}
+        else if(z == 'i'){
+            MatrixRossWells[4][7] = player;}
+        else if(z == 'j'){
+            MatrixRossWells[4][8] = player;}
+        else if(z == 'k'){
+            MatrixRossWells[4][9] = player;}
+        else if(z == 'l'){
+            MatrixRossWells[4][10] = player;}
+        else if(z == '3'){
+            MatrixRossWells[4][13] = player;}
+        else if(z == 'm'){
+            MatrixRossWells[5][4] = player;}
+        else if(z == 'n'){
+            MatrixRossWells[5][7] = player;}
+        else if(z == 'o'){
+            MatrixRossWells[5][8] = player;}
+        else if(z == 'p'){
+            MatrixRossWells[5][11] = player;}
+        else if(z == 'q'){
+            MatrixRossWells[6][3] = player;}
+        else if(z == 'r'){
+            MatrixRossWells[6][7] = player;}
+        else if(z == 's'){
+            MatrixRossWells[6][8] = player;}
+        else if(z == 't'){
+            MatrixRossWells[6][12] = player;}
+        else if(z == 'u'){
+            MatrixRossWells[7][7] = player;}
+        else if(z == 'v'){
+            MatrixRossWells[7][8] = player;}
+        else if(z == '4'){
+            MatrixRossWells[8][7] = player;}
+      
+    }
+   
+    char Hit()
+    {
+    if (MatrixRossWells[0][7] == 'x')
+       {return 'x';}
+    else if (MatrixRossWells[2][5] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[2][7] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[2][9] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[3][6] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[3][7] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[3][8] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][3] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][5] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][6] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][7] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][8] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][9] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][10] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[4][13] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[5][4] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[5][7] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[5][8] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[5][11] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[6][3] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[6][7] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[6][8] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[6][12] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[7][7] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[7][8] == 'x')
+        {return 'x';}
+    else if (MatrixRossWells[8][7] == 'x')
+        {return 'x';}
+    
+    
+    }
+
+
+
+
+
+
 int main() {
   int weaponChoice;
   int unit;
@@ -107,10 +263,15 @@ int main() {
   M4 M;
   Blaster B;
   DeathRay D;
+  char player = 'x';
+  string hitOrMiss;
+  string comment;
+  int shoot = 1;
   
   
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
- cout << "|         Range Calculator         |" << endl << "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
+ cout << "|         Range Calculator         |" << endl;
+ cout << "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  cout << endl << "      Please select your weapon" << endl;
  cout << setw(10) << left << " " << "1. Sniper Rifle" << endl;
  cout << setw(10) << left << " " << "2. M4 Carbine" << endl;
@@ -124,9 +285,9 @@ int main() {
    cin >> weaponChoice;
  }
   ofstream myfile;
-  myfile.open ("DOPE.txt", ios::out | ios::app | ios::binary);
+  myfile.open ("DOPE.txt", ios:: in | ios::out | ios::app | ios::binary);
  
- 
+ while (shoot == 1){
  if (weaponChoice == 1){
    cout << "Sniper Rifle selected." << endl;
    myfile << setw(17) << left << "Sniper Rifle    ";
@@ -222,12 +383,60 @@ int main() {
  }
  cout << endl;
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
+ cout << "Please indicate point of impact:" << endl << endl;
+ Draw();
+ Input();
+ Hit();
+ Draw();
+ 
+ cout << endl << "Hit or miss? (Write Hit or Miss):";
+ cin >> hitOrMiss;
+ myfile << "    " << hitOrMiss;
+ cout << "Please write any comments:"; 
+ cin.ignore();
+ getline(cin, comment);
+ cout << endl << endl;
+ myfile << "     " << comment << endl;
+ 
+ cout << "Another reading?" << endl;
+ cout << "1. Yes" << endl << "2. No" << endl << endl;
+ cout << "Please enter 1 or 2:";
+ cin >> shoot;
+ cout << endl;
+ 
+ while (shoot < 1 || shoot > 2){
+   cout << "Please enter 1 or 2:";
+   cin >> shoot;
+ }
 
+}
+
+
+
+
+
+
+
+myfile << endl;
+    for (int i = 0; i < 9; i++)
+    {
+       for (int j = 0; j < 16; j++)
+       {
+           myfile << MatrixRossWells[i][j] << " ";
+           
+       }
+      myfile << endl; 
+    }
 
 myfile.close();
 
- //cout << endl << "Hit or Miss?";
+ifstream output("DOPE.txt");
+cout << output.rdbuf();
+
+
+
  
  
  return 0;
+
 }
