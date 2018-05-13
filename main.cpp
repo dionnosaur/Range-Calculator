@@ -3,7 +3,8 @@
 #include <iomanip> 
 #include <fstream>
 #include <sstream>
-
+#include <limits> 
+#include <ios> 
 
 using namespace std;
 
@@ -381,6 +382,8 @@ int main() {
  else {
    
  }
+  cin.ignore(numeric_limits<streamsize>::max(),'\n');
+ 
  cout << endl;
  cout <<  "~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-" << endl;
  cout << "Please indicate point of impact:" << endl << endl;
@@ -388,21 +391,24 @@ int main() {
  Input();
  Hit();
  Draw();
- 
+   cin.ignore(numeric_limits<streamsize>::max(),'\n');
  cout << endl << "Hit or miss? (Write Hit or Miss):";
  cin >> hitOrMiss;
  myfile << "    " << hitOrMiss;
  cout << "Please write any comments:"; 
- cin.ignore();
+ 
  getline(cin, comment);
+ cin.ignore();
  cout << endl << endl;
  myfile << "     " << comment << endl;
  
+  cin.ignore(numeric_limits<streamsize>::max(),'\n');
  cout << "Another reading?" << endl;
  cout << "1. Yes" << endl << "2. No" << endl << endl;
  cout << "Please enter 1 or 2:";
  cin >> shoot;
  cout << endl;
+ 
  
  while (shoot < 1 || shoot > 2){
    cout << "Please enter 1 or 2:";
